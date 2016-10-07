@@ -3,11 +3,13 @@
  */
 
 var childProcess = require ( 'child_process' );
+var moment = require ( 'moment' );
 var path = require ( 'path' );
 var yaml = require ( 'yamljs' );
 var wikimediaCommons = require ( 'wikimedia-commons' );
 
 var config = yaml.load ( path.resolve ( __dirname, 'config.yml' ) )
+var today = moment ().format ( 'YYYY/MM/DD' );
 
 console.log ( "Getting daily image from Wikimedia Commons." );
 
@@ -16,7 +18,8 @@ console.log ( "Getting daily image from Wikimedia Commons." );
 // use execSync because
 childProcess.execSync ( 'node node_modules/wikimedia-commons dailypic' );
 
-console.log ( "Using PrimitivePic to generate abstract variants." )
+console.log ( "Using PrimitivePic to generate abstract variants." );
+
 for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
 {
     
@@ -27,3 +30,5 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
     
     childProcess.execSync ( command );
 }
+
+console.log ( "Uploading files to Amazon S3" );
