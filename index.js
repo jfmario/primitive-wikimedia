@@ -11,7 +11,10 @@ var config = yaml.load ( path.resolve ( __dirname, 'config.yml' ) )
 
 console.log ( "Getting daily image from Wikimedia Commons." );
 
-wikimediaCommons.dailypic ();
+// wikimediaCommons.dailypic ();
+
+// use execSync because
+childProcess.execSync ( 'node node_modules/wikimedia-commons dailypic' );
 
 console.log ( "Using PrimitivePic to generate abstract variants." )
 for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
