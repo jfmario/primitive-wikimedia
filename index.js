@@ -32,3 +32,13 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
 }
 
 console.log ( "Uploading files to Amazon S3" );
+
+for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
+{
+    
+    var conversion = config.primitive_pic.conversions [i];
+    var command = 'aws s3 cp ' + path.resolve ( __dirname, 'tmp', conversion.slug + '.jpg' ) + ' s3://' + config.s3.bucket_name +
+        '/' + config.s3.project_dir + '/' + today + '/' + conversion.slug + '.jpg';
+    
+    childProcess.execSync ( command );
+}
