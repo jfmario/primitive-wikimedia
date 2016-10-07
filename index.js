@@ -22,4 +22,5 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
     var command = config.primitive_pic.path + ' -i ' + path.resolve ( __dirname, 'node_modules', 'wikimedia-commons', 'data', 'latest.jpg' ) +
         ' -o ' + path.resolve ( __dirname, 'tmp', conversion.slug + '.jpg' ) + ' -m ' + conversion.mode + ' -n ' + conversion.iterations;
     
-    chci
+    childProcess.execSync ( command );
+}
