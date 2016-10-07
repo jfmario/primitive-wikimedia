@@ -2,7 +2,7 @@
  * Runs the daily process.
  */
 
-var childProcess = require ( 'child_process' ).spawn;
+var childProcess = require ( 'child_process' );
 var path = require ( 'path' );
 var yaml = require ( 'yamljs' );
 var wikimediaCommons = require ( 'wikimedia-commons' );
