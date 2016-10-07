@@ -16,4 +16,6 @@ primitive_pic:
             iterations: 1600
             mode: 3
             slug: cir1600
-            
+s3:
+    bucket_name: johnfmarion
+    project_dir: primitive-wikimedia
