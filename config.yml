@@ -1,0 +1,19 @@
+primitive_pic:
+    path: ~/workshop/go-work/bin/primitive
+    conversions:
+        -
+            description: 50 Iterations in Combo Mode
+            iterations: 50
+            mode: 0
+            slug: combo50
+        -
+            description: 800 Iterations in Triangle Mode
+            iterations: 800
+            mode: 1
+            slug: tri800
+        -
+            description: 1600 Iterations in Ellipse Mode
+            iterations: 1600
+            mode: 3
+            slug: cir1600
+            
