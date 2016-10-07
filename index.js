@@ -3,3 +3,4 @@
  */
  
 var wikimediaCommons = require ( 'wikimedia-commons' );
+wikimediaCommons.dailypic ();
