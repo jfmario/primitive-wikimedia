@@ -4,7 +4,7 @@
 
 var childProcess = require ( 'child_process' );
 var path = require ( 'path' );
-var yaml = require ( 'yaml' );
+var yaml = require ( 'yamljs' );
 var wikimediaCommons = require ( 'wikimedia-commons' );
 
 var config = yaml.load ( path.resolve ( __dirname, 'config.yml' ) )
