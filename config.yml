@@ -1,5 +1,5 @@
 primitive_pic:
-    path: ~/workshop/go-work/bin/primitive
+    path: /home/ubuntu/workshop/go-work/bin/primitive
     conversions:
         -
             description: 50 Iterations in Combo Mode
