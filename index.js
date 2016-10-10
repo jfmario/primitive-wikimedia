@@ -32,7 +32,7 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
     console.log ( childProcess.execSync ( command ) );
 }
 
-console.log ( "Uploading files to Amazon S3" );
+console.log ( "Uploading files to Amazon S3." );
 
 for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
 {
@@ -43,3 +43,7 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
     
     childProcess.execSync ( command );
 }
+
+console.log ( "Posting blog post to www.johnfmarion.com." )
+
+childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" )
