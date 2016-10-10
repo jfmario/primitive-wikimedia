@@ -41,9 +41,10 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
     var command = 'aws s3 cp ' + path.resolve ( __dirname, 'tmp', conversion.slug + '.jpg' ) + ' s3://' + config.s3.bucket_name +
         '/' + config.s3.project_dir + '/' + today + '/' + conversion.slug + '.jpg';
     
+    console.log ( command );
     childProcess.execSync ( command );
 }
 
-console.log ( "Posting blog post to www.johnfmarion.com." )
+console.log ( "Posting blog post to www.johnfmarion.com." );
 
-childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" )
+childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" );
