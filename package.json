@@ -9,6 +9,10 @@
   "author": "John F Marion",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "wikimedia-commons": "git://github.com/jfmario/wikimedia-commons-js"
+    "moment": "^2.15.1",
+    "twitter": "^1.4.0",
+    "wikimedia-commons": "git://github.com/jfmario/wikimedia-commons-js",
+    "yaml": "~0.3.0",
+    "yamljs": "~0.2.8"
   }
 }

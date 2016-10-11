@@ -1,0 +1,169 @@
+Getting daily image from Wikimedia Commons.
+https://upload.wikimedia.org/wikipedia/commons/e/e9/Cuban_green_woodpecker_%28Xiphidiopicus_percussus_percussus%29_female.JPG
+content-type: image/jpeg
+content-length: 2019068
+ok 
+
+Using PrimitivePic to generate abstract variants.
+50 Iterations in Combo Mode
+/home/ubuntu/workshop/go-work/bin/primitive -i /home/ubuntu/srvr/primitive-wikimedia/node_modules/wikimedia-commons/output/latest.jpg -o /home/ubuntu/srvr/primitive-wikimedia/tmp/combo50.jpg -m 0 -n 50
+
+800 Iterations in Triangle Mode
+/home/ubuntu/workshop/go-work/bin/primitive -i /home/ubuntu/srvr/primitive-wikimedia/node_modules/wikimedia-commons/output/latest.jpg -o /home/ubuntu/srvr/primitive-wikimedia/tmp/tri800.jpg -m 1 -n 800
+
+1600 Iterations in Ellipse Mode
+/home/ubuntu/workshop/go-work/bin/primitive -i /home/ubuntu/srvr/primitive-wikimedia/node_modules/wikimedia-commons/output/latest.jpg -o /home/ubuntu/srvr/primitive-wikimedia/tmp/cir1600.jpg -m 3 -n 1600
+
+Uploading files to Amazon S3.
+aws s3 cp /home/ubuntu/srvr/primitive-wikimedia/tmp/combo50.jpg s3://johnfmarion/primitive-wikimedia/2016/10/11/combo50.jpg
+upload: tmp/combo50.jpg to s3://johnfmarion/primitive-wikimedia/2016/10/11/combo50.jpg
+
+aws s3 cp /home/ubuntu/srvr/primitive-wikimedia/tmp/tri800.jpg s3://johnfmarion/primitive-wikimedia/2016/10/11/tri800.jpg
+upload: tmp/tri800.jpg to s3://johnfmarion/primitive-wikimedia/2016/10/11/tri800.jpg
+
+aws s3 cp /home/ubuntu/srvr/primitive-wikimedia/tmp/cir1600.jpg s3://johnfmarion/primitive-wikimedia/2016/10/11/cir1600.jpg
+upload: tmp/cir1600.jpg to s3://johnfmarion/primitive-wikimedia/2016/10/11/cir1600.jpg
+
+Posting blog post to www.johnfmarion.com.
+spawn ssh jfmario@ssh.pythonanywhere.com
+<<<<<<:>~ PythonAnywhere SSH. Help @ https://www.pythonanywhere.com/wiki/SSHAccessyes
+
+jfmario@ssh.pythonanywhere.com's password: 
+[0;37m03:06 ~[0;33m [1;32m$ [0;37mcd site01/blog
+[0;37m03:06 ~/site01/blog[0;33m (master)[1;32m$ [0;37mworkon newdjango
+(newdjango) [0;37m03:06 ~/site01/blog[0;33m (master)[1;32m$ [0;37mpython scripts/hooks/primitive_wiki<ython scripts/hooks/primitive_wikim                                                                     <ython scripts/hooks/primitive_wikimedia.py
+Traceback (most recent call last):
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 112, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 226, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorvalue
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 217, in execute
+    res = self._query(query)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 378, in _query
+    rowcount = self._do_query(q)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 341, in _do_query
+    db.query(q)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.IntegrityError: (1062, "Duplicate entry 'primitive-wikimedia20161011' for key 'slug'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "scripts/hooks/primitive_wikimedia.py", line 32, in <module>
+    post.save ()
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/base.py", line 796, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/base.py", line 824, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/base.py", line 908, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/base.py", line 947, in _do_insert
+    using=using, raw=raw)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/query.py", line 1045, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/models/sql/compiler.py", line 1054, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/django/db/backends/mysql/base.py", line 112, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 226, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorvalue
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 217, in execute
+    res = self._query(query)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 378, in _query
+    rowcount = self._do_query(q)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/cursors.py", line 341, in _do_query
+    db.query(q)
+  File "/home/jfmario/.virtualenvs/newdjango/lib/python3.4/site-packages/MySQLdb/connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'primitive-wikimedia20161011' for key 'slug'")
+(newdjango) [0;37m03:06 ~/site01/blog[0;33m (master)[1;32m$ [0;37m
+{ created_at: 'Tue Oct 11 03:06:16 +0000 2016',
+  id: 785677873948430300,
+  id_str: '785677873948430336',
+  text: 'Primitive Wikimedia - thanks to PrimitivePic. https://t.co/8BpVZYP627 https://t.co/CYdaSkc0zU',
+  truncated: false,
+  entities: 
+   { hashtags: [],
+     symbols: [],
+     user_mentions: [],
+     urls: [ [Object] ],
+     media: [ [Object] ] },
+  extended_entities: { media: [ [Object] ] },
+  source: '<a href="http://ec2-54-191-90-8.us-west-2.compute.amazonaws.com:3000" rel="nofollow">JohnFMarion.com</a>',
+  in_reply_to_status_id: null,
+  in_reply_to_status_id_str: null,
+  in_reply_to_user_id: null,
+  in_reply_to_user_id_str: null,
+  in_reply_to_screen_name: null,
+  user: 
+   { id: 2891556293,
+     id_str: '2891556293',
+     name: 'John Marion',
+     screen_name: 'johnfmarion',
+     location: '',
+     description: '',
+     url: null,
+     entities: { description: [Object] },
+     protected: false,
+     followers_count: 24,
+     friends_count: 119,
+     listed_count: 0,
+     created_at: 'Tue Nov 25 01:55:40 +0000 2014',
+     favourites_count: 109,
+     utc_offset: null,
+     time_zone: null,
+     geo_enabled: false,
+     verified: false,
+     statuses_count: 103,
+     lang: 'en',
+     contributors_enabled: false,
+     is_translator: false,
+     is_translation_enabled: false,
+     profile_background_color: 'C0DEED',
+     profile_background_image_url: 'http://abs.twimg.com/images/themes/theme1/bg.png',
+     profile_background_image_url_https: 'https://abs.twimg.com/images/themes/theme1/bg.png',
+     profile_background_tile: false,
+     profile_image_url: 'http://pbs.twimg.com/profile_images/698698770335322112/9JNFlmaZ_normal.jpg',
+     profile_image_url_https: 'https://pbs.twimg.com/profile_images/698698770335322112/9JNFlmaZ_normal.jpg',
+     profile_banner_url: 'https://pbs.twimg.com/profile_banners/2891556293/1459549993',
+     profile_link_color: '0084B4',
+     profile_sidebar_border_color: 'C0DEED',
+     profile_sidebar_fill_color: 'DDEEF6',
+     profile_text_color: '333333',
+     profile_use_background_image: true,
+     has_extended_profile: false,
+     default_profile: true,
+     default_profile_image: false,
+     following: false,
+     follow_request_sent: false,
+     notifications: false },
+  geo: null,
+  coordinates: null,
+  place: null,
+  contributors: null,
+  is_quote_status: false,
+  retweet_count: 0,
+  favorite_count: 0,
+  favorited: false,
+  retweeted: false,
+  possibly_sensitive: false,
+  lang: 'en' }
