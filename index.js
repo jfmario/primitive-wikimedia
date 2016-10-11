@@ -22,7 +22,7 @@ console.log ( childProcess.execSync ( 'node node_modules/wikimedia-commons daily
 console.log ( "Collecting image metadata." );
 
 var imageUrl = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
-    'wikimedia-commons', 'output', 'image_url.txt' ) ).toString ();
+    'wikimedia-commons', 'output', 'image_link.txt' ) ).toString ();
 var imageGeoData = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
     'wikimedia-commons', 'output', 'image-geo.txt' ) ).toString ();
     
