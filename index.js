@@ -12,12 +12,9 @@ var config = yaml.load ( path.resolve ( __dirname, 'config.yml' ) )
 var today = moment ().format ( 'YYYY/MM/DD' );
 
 console.log ( "Getting daily image from Wikimedia Commons." );
-
 // wikimediaCommons.dailypic ();
-
 // use execSync because
-console.log ( childProcess.execSync ( 'node node_modules/wikimedia-commons dailypic' ) );
-
+console.log ( childProcess.execSync ( 'node node_modules/wikimedia-commons dailypic' ).toString () );
 console.log ( "Using PrimitivePic to generate abstract variants." );
 
 for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
@@ -29,7 +26,7 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
         ' -o ' + path.resolve ( __dirname, 'tmp', conversion.slug + '.jpg' ) + ' -m ' + conversion.mode + ' -n ' + conversion.iterations;
     
     console.log ( command );
-    console.log ( childProcess.execSync ( command ) );
+    console.log ( childProcess.execSync ( command ).toString () );
 }
 
 console.log ( "Uploading files to Amazon S3." );
@@ -42,9 +39,9 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
         '/' + config.s3.project_dir + '/' + today + '/' + conversion.slug + '.jpg';
     
     console.log ( command );
-    childProcess.execSync ( command );
+    console.log ( childProcess.execSync ( command ).toString () );
 }
 
 console.log ( "Posting blog post to www.johnfmarion.com." );
 
-console.log ( childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" ) );
+console.log ( childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" ).toString () );
