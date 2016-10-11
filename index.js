@@ -56,7 +56,7 @@ twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
         if ( err ) { console.log ( err ); return; }
         
         var status = {
-            media_ids: med.media_id_string
+            media_ids: med.media_id_string,
             status: "Primitive Wikimedia - thanks to PrimitivePic. https://github.com/fogleman/primitive"
         }
         twitter.post ( 'statuses/update', status, function ( err, twt, res )
