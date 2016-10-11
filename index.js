@@ -47,4 +47,4 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
 
 console.log ( "Posting blog post to www.johnfmarion.com." );
 
-childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" );
+console.log ( childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh" ) );
