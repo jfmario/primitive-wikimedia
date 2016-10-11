@@ -62,7 +62,7 @@ twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
         twitter.post ( 'statuses/update', status, function ( err, twt, res )
             {
                 if ( err ) { console.log ( err ); return; }
-                console.log ( twt );
+                console.log ( "Tweet: ", twt.text );
             }
         );
     }
