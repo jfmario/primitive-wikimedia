@@ -19,6 +19,18 @@ console.log ( "Getting daily image from Wikimedia Commons." );
 // wikimediaCommons.dailypic ();
 // use execSync because
 console.log ( childProcess.execSync ( 'node node_modules/wikimedia-commons dailypic' ).toString () );
+console.log ( "Collecting image metadata." );
+
+var imageUrl = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
+    'wikimedia-commons', 'output', 'image_url.txt' ) ).toString ();
+var imageGeoData = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
+    'wikimedia-commons', 'output', 'image-geo.txt' ) ).toString ();
+    
+imageGeoData = imageGeoData.split ( ';' );
+
+var lat = parseFloat ( imageGeoData [0] );
+var lon = parseFloat ( imageGeoData [1] );
+
 console.log ( "Using PrimitivePic to generate abstract variants." );
 
 for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
@@ -56,6 +68,8 @@ twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
         if ( err ) { console.log ( err ); return; }
         
         var status = {
+            lat: lat,
+            lon: lon,
             media_ids: med.media_id_string,
             status: "Primitive Wikimedia - thanks to PrimitivePic. https://github.com/fogleman/primitive"
         }
