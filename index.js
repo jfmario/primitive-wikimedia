@@ -25,6 +25,8 @@ var imageUrl = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
     'wikimedia-commons', 'output', 'image_link.txt' ) ).toString ();
 var imageGeoData = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
     'wikimedia-commons', 'output', 'image_geo.txt' ) ).toString ();
+var imageDesc = fs.readFileSync ( path.resolve ( __dirname, 'node_modules',
+    'wikimedia-commons', 'output', 'image_desc.txt' ) );
 
 imageGeoData = imageGeoData.split ( ';' );
 
@@ -60,7 +62,7 @@ for ( var i = 0; i < config.primitive_pic.conversions.length; ++i )
 }
 
 console.log ( "Posting blog post to www.johnfmarion.com." );
-console.log ( childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh '" + imageUrl + "'" ).toString () );
+console.log ( childProcess.execSync ( "expect scripts/bash/blog-post.secret.sh '" + imageUrl + "' " + "\"" + imageDesc + "\"" ).toString () );
 
 var imgData = fs.readFileSync ( path.resolve ( __dirname, 'tmp', 'tri800.jpg' ) );
 twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
