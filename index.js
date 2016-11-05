@@ -75,7 +75,7 @@ twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
             lat: lat,
             lon: lon,
             media_ids: med.media_id_string,
-            status: "Primitive Wikimedia - thanks to PrimitivePic. https://github.com/fogleman/primitive"
+            status: "Primitive Wikimedia: " + imageDesc
         }
         twitter.post ( 'statuses/update', status, function ( err, twt, res )
             {
