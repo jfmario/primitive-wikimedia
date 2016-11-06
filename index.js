@@ -75,7 +75,7 @@ twitter.post ( 'media/upload', { media: imgData }, function ( err, med, res )
             lat: lat,
             lon: lon,
             media_ids: med.media_id_string,
-            status: "Primitive Wikimedia: " + imageDesc
+            status: ( "Primitive Wikimedia: " + imageDesc ).slice ( 0, 130 ) + '...'
         }
         twitter.post ( 'statuses/update', status, function ( err, twt, res )
             {
